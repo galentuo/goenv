@@ -31,10 +31,6 @@ mkgoenv(){
             export GOENV="$1"
             export GOPATH="$PWD/$GOENV"
             __seteditor $1
-            if ! [ -z "$editor" ]; then
-                cd $1/src/$1
-                $editor .
-            fi
         fi
     fi
 }
@@ -82,6 +78,7 @@ goenv(){
             echo "Activating goenv for '$PROJECT_PATH'"
             export GOENV=$1
             export GOPATH=$PROJECT_PATH
+            export PATH=$PATH:~GOPATH/bin/
         else
             echo "'$1' not found."
             lsgoenv
